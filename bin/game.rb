@@ -12,44 +12,43 @@ class Game
               [1,4,7],[2,5,8],[3,6,9],
               [1,5,9],[3,5,7]
              ]
-    start
   end
 
-  private
-  def start()
-    until (winner?() || @board.full?())
+  def start
+    until winner? || @board.full?
       @turn == 1 ? plays(@player_1) : plays(@player_2)
       @turn = @turn == 1 ? 0 : 1
     end
+
     end_game
   end
 
+  private
+
   def end_game
-    if winner?()
-      @board.display()
+    if winner?
+      @board.display
       puts "Congratz #{winner?} you won"
     elsif @board.full?
-      @board.display()
+      @board.display
       puts "It's a Tie!"
     end
   end
 
-  def winner?()
+  def winner?
     players = [@player_1, @player_2]
-    players.each {|player|
-      @lines.each {|line|
-        return player.name() if player.wins?(line)
-      }
-    }
+    players.each do |player|
+      @lines.each { |line| return player.name if player.wins?(line) }
+    end
     false
   end
 
   def plays(player)
     while 1
-    @board.display()
+    @board.display
       reply = player.get_choice(@board)
       if reply
-        @board.fill(reply,player.character)
+        @board.fill(reply, player.character)
         player.play.push(reply).sort!
         break
       end
@@ -57,16 +56,17 @@ class Game
   end
 end
 
-def start_game()
-  puts "Who wants to be X?"
-  player1 = Player.new(gets.chomp,"X")
+def start_game
+  puts 'Who wants to be X?'
+  player1 = Player.new(gets.chomp, 'X')
   puts "Who wants to be O?"
-  player2 = Player.new(gets.chomp, "O")
-  Game.new(player1, player2)
+  player2 = Player.new(gets.chomp, 'O')
+
+  Game.new(player1, player2).start
   puts "Do you want to play one more time? \n(Y/N)"
   reply = gets.chomp
   puts `clear`
-  start_game unless reply.downcase == "n"
+  start_game unless reply.downcase == 'n'
 end
 
 start_game
