@@ -1,6 +1,5 @@
 class Player
-  attr_accessor :play
-  attr_reader :character, :name
+  attr_reader :name, :character, :play
 
   def initialize(name, character)
     @name = name
@@ -18,7 +17,7 @@ class Player
     if (1..9).include?(choice)
       game_board.is_fulled?(choice) ? puts("Try again, that spot has been taken already.\n\n") : choice
     else
-      puts("Enter a valid number, please.")
+      puts('Enter a valid number, please.')
     end
   end
 end

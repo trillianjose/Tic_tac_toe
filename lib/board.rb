@@ -1,17 +1,15 @@
 class Board
-  attr_accessor :play
-
   def initialize(play)
     @play = play
   end
 
-  def display()
+  def display
     puts "\t  #{@play[1]} | #{@play[2]} | #{@play[3]} "
     puts "\t ---|---|---"
     puts "\t  #{@play[4]} | #{@play[5]} | #{@play[6]} "
     puts "\t ---|---|---"
     puts "\t  #{@play[7]} | #{@play[8]} | #{@play[9]} "
-    puts ""
+    puts ''
   end
 
   def fill(pos, character)
@@ -25,6 +23,6 @@ class Board
   end
 
   def is_fulled?(num)
-    @play[num] == "X" || "O" == @play[num]
+    @play[num] == 'X' || 'O' == @play[num]
   end
 end
