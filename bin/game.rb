@@ -1,5 +1,5 @@
-load '/../lib/board.rb'
-load '/../lib/player.rb'
+require  '../lib/board.rb'
+require '../lib/player.rb'
 
 class Game
   def initialize(player1, player2)
@@ -51,7 +51,6 @@ class Game
       if reply
         @board.fill(reply,player.character)
         player.play.push(reply).sort!
-        puts 'clear'
         break
       end
     end
@@ -66,7 +65,7 @@ def start_game()
   Game.new(player1, player2)
   puts "Do you want to play one more time? \n(Y/N)"
   reply = gets.chomp
-  puts 'clear'
+  puts `clear`
   start_game unless reply.downcase == "n"
 end
 
