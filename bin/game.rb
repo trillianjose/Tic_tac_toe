@@ -7,16 +7,11 @@ class Game
     @player_2 = player2
     @board = Board.new([0,1,2,3,4,5,6,7,8,9])
     @turn = 1
-    @lines = [
-              [1,2,3],[4,5,6],[7,8,9],
-              [1,4,7],[2,5,8],[3,6,9],
-              [1,5,9],[3,5,7]
-             ]
   end
 
   def start
     until winner? || @board.full?
-      @turn == 1 ? plays(@player_1) : plays(@player_2)
+      @turn == 1 ? @player_1.plays(@board) : @player_2.plays(@board)
       @turn = @turn == 1 ? 0 : 1
     end
 
@@ -36,23 +31,7 @@ class Game
   end
 
   def winner?
-    players = [@player_1, @player_2]
-    players.each do |player|
-      @lines.each { |line| return player.name if player.wins?(line) }
-    end
-    false
-  end
-
-  def plays(player)
-    while 1
-    @board.display
-      reply = player.get_choice(@board)
-      if reply
-        @board.fill(reply, player.character)
-        player.play.push(reply).sort!
-        break
-      end
-    end
+    @player_1.winner? || @player_2.winner?
   end
 end
 
