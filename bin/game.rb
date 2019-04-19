@@ -9,26 +9,22 @@ class Game
     @turn = 1
   end
 
-  def start
+  def play
     until winner? || @board.full?
       @turn == 1 ? @player_1.plays(@board) : @player_2.plays(@board)
       @turn = @turn == 1 ? 0 : 1
     end
 
-    end_game
-  end
+    @board.display
 
-  private
-
-  def end_game
     if winner?
-      @board.display
       puts "Congratz #{winner?} you won"
     elsif @board.full?
-      @board.display
       puts "It's a Tie!"
     end
   end
+
+  private
 
   def winner?
     @player_1.winner? || @player_2.winner?
@@ -41,7 +37,7 @@ def start_game
   puts "Who wants to be O?"
   player2 = Player.new(gets.chomp, 'O')
 
-  Game.new(player1, player2).start
+  Game.new(player1, player2).play
   puts "Do you want to play one more time? \n(Y/N)"
   reply = gets.chomp
   puts `clear`
