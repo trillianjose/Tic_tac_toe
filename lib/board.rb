@@ -1,28 +1,30 @@
 class Board
-  def initialize(play)
-    @play = play
+  def initialize(boxes)
+    @boxes = boxes
   end
 
   def display
-    puts "\t  #{@play[1]} | #{@play[2]} | #{@play[3]} "
+    puts "\t  #{@boxes[1]} | #{@boxes[2]} | #{@boxes[3]} "
     puts "\t ---|---|---"
-    puts "\t  #{@play[4]} | #{@play[5]} | #{@play[6]} "
+    puts "\t  #{@boxes[4]} | #{@boxes[5]} | #{@boxes[6]} "
     puts "\t ---|---|---"
-    puts "\t  #{@play[7]} | #{@play[8]} | #{@play[9]} "
+    puts "\t  #{@boxes[7]} | #{@boxes[8]} | #{@boxes[9]} "
     puts ''
   end
 
-  def fill(pos, character)
-    @play[pos] = character
+  def fill(position, character)
+    @boxes[position] = character
   end
 
   def full?
-    @play[1..9].all? {|x|
-      x.instance_of?(String)
-    }
+    @boxes[1..9].all? {|box| box.instance_of?(String) }
   end
 
-  def is_fulled?(num)
-    @play[num] == 'X' || 'O' == @play[num]
+  def is_fulled?(position)
+    ['X', '0'].include? @boxes[position]
+  end
+
+  def valid_box?(position)
+    @boxes[1..9].include?(position)
   end
 end

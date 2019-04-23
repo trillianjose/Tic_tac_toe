@@ -10,9 +10,18 @@ class Game
   end
 
   def play
-    until winner? || @board.full?
-      @turn == 1 ? @player_1.plays(@board) : @player_2.plays(@board)
-      @turn = @turn == 1 ? 0 : 1
+    until game_is_over
+      @board.display
+
+      player_turn = assign_player_in_turn
+
+      puts "#{player_turn.name} select a number>>"
+      choice = gets.chomp.to_i
+
+      move = player_turn.save_choice(@board, choice)
+      puts 'Choice is not valid' unless move
+
+      @turn = toogle_turn
     end
 
     @board.display
@@ -26,8 +35,20 @@ class Game
 
   private
 
+  def game_is_over
+    winner? || @board.full?
+  end
+
   def winner?
     @player_1.winner? || @player_2.winner?
+  end
+
+  def assign_player_in_turn
+    @turn == 1 ? @player_1 : @player_2
+  end
+
+  def toogle_turn
+    @turn == 1 ? 0 : 1
   end
 end
 
