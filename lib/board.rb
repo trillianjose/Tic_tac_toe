@@ -1,15 +1,18 @@
 class Board
+  attr_reader :boxes
+
   def initialize(boxes)
     @boxes = boxes
   end
 
   def display
-    puts "\t  #{@boxes[1]} | #{@boxes[2]} | #{@boxes[3]} "
-    puts "\t ---|---|---"
-    puts "\t  #{@boxes[4]} | #{@boxes[5]} | #{@boxes[6]} "
-    puts "\t ---|---|---"
-    puts "\t  #{@boxes[7]} | #{@boxes[8]} | #{@boxes[9]} "
-    puts ''
+    board = "\t  #{@boxes[1]} | #{@boxes[2]} | #{@boxes[3]}\n"\
+    "\t ---|---|---\n"\
+    "\t  #{@boxes[4]} | #{@boxes[5]} | #{@boxes[6]}\n"\
+    "\t ---|---|---\n"\
+    "\t  #{@boxes[7]} | #{@boxes[8]} | #{@boxes[9]}\n\n"\
+
+    board
   end
 
   def fill(position, character)

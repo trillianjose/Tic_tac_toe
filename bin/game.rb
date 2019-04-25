@@ -11,7 +11,7 @@ class Game
 
   def play
     until game_is_over
-      @board.display
+      puts @board.display
 
       player_turn = assign_player_in_turn
 
@@ -24,7 +24,7 @@ class Game
       @turn = toogle_turn
     end
 
-    @board.display
+    puts @board.display
 
     if winner?
       puts "Congratz #{winner?} you won"
