@@ -1,5 +1,5 @@
-require  '../lib/board.rb'
-require '../lib/player.rb'
+require_relative '../lib/board'
+require_relative '../lib/player'
 
 class Game
   def initialize(player1, player2)
@@ -56,6 +56,7 @@ def start_game
   puts 'Who wants to be X?'
   player1 = Player.new(gets.chomp, 'X')
   puts "Who wants to be O?"
+  player_name =
   player2 = Player.new(gets.chomp, 'O')
 
   Game.new(player1, player2).play
@@ -65,4 +66,4 @@ def start_game
   start_game unless reply.downcase == 'n'
 end
 
-start_game
+start_game if __FILE__ == $0

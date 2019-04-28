@@ -21,6 +21,8 @@ class Player
     false
   end
 
+  private
+
   def lines_match?(line)
     line & @play == line
   end

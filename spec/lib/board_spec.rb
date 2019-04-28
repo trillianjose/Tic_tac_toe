@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'byebug'
 
 describe Board do
   let(:board) { described_class.new([0,1,2,3,4,5,6,7,8,9]) }
