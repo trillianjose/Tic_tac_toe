@@ -19,7 +19,8 @@ describe Player do
   describe '#save_choice' do
     context 'when choice is valid' do
       it 'should full position in board' do
-        expect{ player_one.save_choice(board, 1) }.to change{ board.boxes[1] }.from(1).to('O')
+        expect{ player_one.save_choice(board, 1) }.to change{ board.boxes[1] }/
+        .from(1).to('O')
       end
 
       it 'should save position in @play' do
