@@ -54,7 +54,26 @@ describe Player do
     end
   end
 
-  describe '#winner?' do
+  describe '#winner? on first chance' do
+    before do
+      player_one.save_choice(board, 5)
+      player_two.save_choice(board, 1)
+      player_one.save_choice(board, 2)
+      player_two.save_choice(board, 7)
+    end
+
+    context 'when there is a winner' do
+      before do
+        player_one.save_choice(board, 8)
+      end
+
+      it 'should return name of player' do
+        expect(player_one.winner?).to eq 'marge'
+      end
+    end
+  end
+
+  describe '#winner? on last play' do
     before do
       player_one.save_choice(board, 5)
       player_two.save_choice(board, 1)
