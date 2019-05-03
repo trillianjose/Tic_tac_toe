@@ -66,4 +66,4 @@ def start_game
   start_game unless reply.downcase == 'n'
 end
 
-start_game if __FILE__ == $0
+start_game
